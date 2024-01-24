@@ -1,5 +1,3 @@
-import uuid
-
 class Author:
     def __init__(self, name: str):
         self.name = name
@@ -15,6 +13,8 @@ class Author:
     def delete_object(self):
         print("Author Removed")
         del self
+
+
 
 class Book:
     def __init__(self, title: str, genre: str, author: object):
