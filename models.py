@@ -1,5 +1,11 @@
+import uuid
+
 class Author:
     def __init__(self, name: str):
+        # random id
+        self.id = uuid.uuid4
+
+        
         self.name = name
         self.books = []
 
@@ -16,11 +22,11 @@ class Author:
 
 
 
-class Book:
+class Book(Author):
     def __init__(self, title: str, genre: str, author: object):
         self.title = title
         self.genre = genre
-        self.author = author
+        self.author = super.name
         self.rating = None
 
     def update_rating(self, rating: float):
