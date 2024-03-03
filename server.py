@@ -98,7 +98,20 @@ while response != "x":
             print(f"ID {i}: {a}")
     
     elif response == 'f':
-        print('f')
+
+        authors = get_all_authors()
+
+        for i,a in authors:
+            print(f"ID {i}: {a}")
+        
+        author_id = input("Author ID: ")
+
+        cursor.execute('''SELECT * FROM Book WHERE author_id = ?''', (author_id,))
+
+        author_books = cursor.fetchall()
+
+        for i, b in enumerate(author_books):
+            print(f"{i}: {b}")
 
 
         # add a book
