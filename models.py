@@ -1,9 +1,10 @@
 import uuid
+import numpy as np
 
 class Author:
     def __init__(self, name: str):
         # random id
-        self.id = uuid.uuid4
+        self.id = np.random.randint(0,1000)
 
         
         self.name = name
@@ -24,6 +25,7 @@ class Author:
 
 class Book(Author):
     def __init__(self, title: str, genre: str, author: object):
+        self.id = np.random.randint(0,1000)
         self.title = title
         self.genre = genre
         self.author = super.name
