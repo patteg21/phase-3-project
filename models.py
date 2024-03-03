@@ -24,12 +24,12 @@ class Author:
 
 
 class Book(Author):
-    def __init__(self, title: str, genre: str, author: object):
+    def __init__(self, title: str, genre: str, rating:str, author_id: int):
         self.id = np.random.randint(0,1000)
         self.title = title
         self.genre = genre
-        self.author = super.name
-        self.rating = None
+        self.rating = rating
+        self.author_id = author_id
 
     def update_rating(self, rating: float):
         self.rating = rating

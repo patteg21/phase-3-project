@@ -50,16 +50,16 @@ Author and Book Tracker - CLI Application
 COMMANDS (case insensitive)
 ---------------------------------------------------------------
 Add Author: 'a'
+Find Authors Books: 'f'
 List of Authors: 'a -l'
+
 Add Book: 'b'
 List of Books: 'b -l'
 
 Remove Author: 'rm -a'
 Remove Book: 'rm -b'
 
-### DELUXE
 Cow: 'cow'
-###
 
 Exit: 'x' 
 ---------------------------------------------------------------
@@ -96,23 +96,42 @@ while response != "x":
 
         for i,a in authors:
             print(f"ID {i}: {a}")
+    
+    elif response == 'f':
+        print('f')
 
 
         # add a book
     elif response == "b":
         authors = get_all_authors()
 
+        print("Authors: ")
         for i,a in authors:
             print(f"ID {i}: {a}")
 
-        print("b")
+        title = input("Title: ")
+        genre = input("Genre: ")
+        rating = input("Rating: ")
+        author_id = input("Author ID: ")
+
+        book = Book(title=title, genre=genre, rating=rating, author_id=author_id)
+        cursor.execute('''INSERT INTO Book (book_id, title, genre, rating, author_id) VALUES (?, ?, ?, ?, ?)''', 
+               (book.id, book.title, book.genre, book.rating, book.author_id))
+
+        connection.commit()
+        print('''
+        
+        Book Succesfully Added
+        
+        ''')
+
 
     elif response == "a -l":
 
         books = get_all_books()
 
-        for i,a in authors:
-            print(f"{books}")
+        for b in books:
+            print(f"{b}")
 
 
 
