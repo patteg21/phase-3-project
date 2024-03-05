@@ -14,23 +14,24 @@ class Author(Base):
     name = Column(String, nullable=False)
     books = relationship("Book", back_populates="author")
 
+
 class Book(Base):
     __tablename__ = 'books'
     id = Column(String, primary_key=True, default=generate_uuid)
     title = Column(String, nullable=False)
     genre = Column(String, nullable=False)
-    rating = Column(Float, nullable=False)
+    rating = Column(Integer, nullable=True, default=5) 
     author_id = Column(String, ForeignKey('authors.id'))
     author = relationship("Author", back_populates="books")
+    ratings = relationship("Rating", back_populates="book") 
 
 class Rating(Base):
     __tablename__ = 'ratings'
-    rating_id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, default=generate_uuid)
     rating = Column(Integer)
     review = Column(String, nullable=False)
-    book_id = Column(Integer, ForeignKey('books.book_id'))
-    book = relationship("Book", back_populates="ratings")
-
+    book_id = Column(Integer, ForeignKey('books.id'))
+    book = relationship("Book", back_populates="ratings") 
 
 
 engine = create_engine('sqlite:///database.db')
