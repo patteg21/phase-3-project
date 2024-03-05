@@ -34,40 +34,51 @@ def main():
             add_author(name=name)
             print("Author Added")
         elif r == "b":
+            print("")
             authors = all_authors()
             for a in authors:
                 print(a.name)
+            print("")
             title = input("Title: ")
             genre = input("Genre: ")
             author = input("Author (Full Name): ")
             add_book(title, genre, author)
             print("Book Added")
         elif r == "b -r":
+            print("")
             books = all_books()
             for book in books:
                 print(book)
+            print("")
             rating = input("Rating: ")
             review = input("Review: ")
             title = input("Book (Full Name): ")
             add_rating(int(rating), review, title)
         elif r == "a -l":
+            print("")
             authors = all_authors()
             for a in authors:
                 print(a.name)
+            print("")
         elif r == "b -l":
             books = all_books()
             for book in books:
                 print(book.title)
         elif r == "f":
+            print("")
             authors = all_authors()
             for a in authors:
                 print(a.name)
+            print("")
+
             name = input("Name: ")
             get_author_books(name=name)
         elif r == "f -b":
+            print("")
             books = all_books()
             for book in books:
                 print(book.title)
+            print("")
             title = input("Book (Full Name): ")
             get_book_ratings(title=title)
 
