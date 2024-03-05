@@ -1,40 +1,39 @@
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, relationship
 import uuid
-import numpy as np
 
-class Author:
-    def __init__(self, name: str):
-        # random id
-        self.id = np.random.randint(0,1000)
+Base = declarative_base()
 
-        
-        self.name = name
-        self.books = []
+def generate_uuid():
+    return str(uuid.uuid4())
 
-    def add_book(self, book: object):
-        self.books.append(book)
+class Author(Base):
+    __tablename__ = 'authors'
+    id = Column(String, primary_key=True, default=generate_uuid)
+    name = Column(String, nullable=False)
+    books = relationship("Book", back_populates="author")
 
-    def get_all_books(self):
-        for book in self.books:
-            print(f"{book}")
+class Book(Base):
+    __tablename__ = 'books'
+    id = Column(String, primary_key=True, default=generate_uuid)
+    title = Column(String, nullable=False)
+    genre = Column(String, nullable=False)
+    rating = Column(Float, nullable=False)
+    author_id = Column(String, ForeignKey('authors.id'))
+    author = relationship("Author", back_populates="books")
 
-    def delete_object(self):
-        print("Author Removed")
-        del self
+class Rating(Base):
+    __tablename__ = 'ratings'
+    rating_id = Column(Integer, primary_key=True)
+    rating = Column(Integer)
+    review = Column(String, nullable=False)
+    book_id = Column(Integer, ForeignKey('books.book_id'))
+    book = relationship("Book", back_populates="ratings")
 
 
 
-class Book(Author):
-    def __init__(self, title: str, genre: str, rating:str, author_id: int):
-        self.id = np.random.randint(0,1000)
-        self.title = title
-        self.genre = genre
-        self.rating = rating
-        self.author_id = author_id
+engine = create_engine('sqlite:///database.db')
 
-    def update_rating(self, rating: float):
-        self.rating = rating
-        print(f"{self.title} is now rated {self.rating}")
-
-    def delete_book(self):
-        print("Book Removed")
-        del self
+# Create all tables
+Base.metadata.create_all(engine)
