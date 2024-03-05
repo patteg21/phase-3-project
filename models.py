@@ -37,3 +37,4 @@ engine = create_engine('sqlite:///database.db')
 
 # Create all tables
 Base.metadata.create_all(engine)
+Session = sessionmaker(bind=engine)

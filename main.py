@@ -1,14 +1,11 @@
-from models import Author, Book, Rating
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, sessionmaker
+from models import Author, Book, Rating, Session
 
-# connect to my DB
-try:
-    connection = sqlite3.connect('database.db')
-    cursor = connection.cursor()
-    print("\nDatabase connected... \n")
-except:
-    print ("\nDatabase not connected \n")
+# Create a new session
+session = Session()
 
-# Create Author table
 
 def main():
 
@@ -35,6 +32,8 @@ def main():
     response = input().lower()
 
     while response != "x":
+
+        
 
 
         # keep in a while loop
