@@ -1,10 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, sessionmaker
-from models import Author, Book, Rating, Session
-
-# Create a new session
-session = Session()
+from utils import *
 
 
 def main():
@@ -15,10 +9,11 @@ def main():
     COMMANDS (case insensitive)
     ---------------------------------------------------------------
     Add Author: 'a'
-    Find Authors Books: 'f'
-    List of Authors: 'a -l'
     Add Book: 'b'
     Add Rating: 'b -r'
+
+    Find Authors Books: 'f'
+    List of Authors: 'a -l'
     List of Books: 'b -l'
     Remove Author: 'rm -a'
     Remove Book: 'rm -b'
@@ -29,15 +24,35 @@ def main():
     ---------------------------------------------------------------
     """)
 
-    response = input().lower()
+    r = input().lower()
 
-    while response != "x":
-
+    while r != "x":
         
+        if r == "a":
+            name = input("Name: ")
+            add_author(name=name)
+            print("Author Added")
+        if r == "b":
+            authors = all_authors()
+            for a in authors:
+                print(a)
+            title = input("Title: ")
+            genre = input("Genre: ")
+            author = input("Author (Full Name): ")
+            add_book(title, genre, get_one_author(author))
+            print("Book Added")
+        if r == "b -r":
+            books = all_books
+            for book in books:
+                print(book)
+            rating = input("Rating: ")
+            review = input("Review: ")
+            title = input("Book (Full Name): ")
+            add_rating(rating, review, get_one_book(title))
 
 
         # keep in a while loop
-        response = input().lower()
+        r = input().lower()
 
 if __name__ == "__main__":
     main()
