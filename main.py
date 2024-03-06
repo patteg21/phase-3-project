@@ -84,12 +84,10 @@ Exit: 'x'
             title = input("Title: ")
             delete_book(title=title)
         elif r == "rm -r":
-            pass
-
-
+            uuid = input("UUID: ")
+            delete_rating(rating_id=uuid)
         elif r == "cow":
-            cowsay.cow("Leave...")
-
+            cowsay.cow("Tell me about bad coding practices...")
 
 
         # divider and condition
