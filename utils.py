@@ -45,7 +45,7 @@ def get_author_books(name):
 
 def get_book_ratings(title):
     book = get_one_book(title=title)
-    return book.rating
+    return book.ratings
 
 
 ### DELETION

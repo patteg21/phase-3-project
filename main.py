@@ -3,6 +3,7 @@ import cowsay
 
 
 def print_a():
+    print("")
     print("AUTHORS")
     authors = all_authors()
     for a in authors:
@@ -10,6 +11,7 @@ def print_a():
     print("")
 
 def print_b():
+    print("")
     print("BOOKS")
     books = all_books()
     for book in books:
@@ -57,13 +59,16 @@ Exit: 'x'
             review = input("Review: ")
             add_rating(rating, review, title)
             print("Rating Added")
+        elif r == "ls -a":
+            print_a()
+        elif r == "ls -b":
+            print_b()
         elif r == "f":
             print_a()
             name = input("Name: ")
             books = get_author_books(name=name)
             for b in books:
                 print(b.title)
-
         elif r == "f -b":
             print_b()
             title = input("Book (Full Name): ")
