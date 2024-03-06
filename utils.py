@@ -15,7 +15,6 @@ def get_one_book(title):
     return session.query(Book).filter(Book.title == title).first()
 
 
-
 def add_book(title, genre, author):
     author = get_one_author(name=author)
 
@@ -32,9 +31,6 @@ def add_rating(rating, review, title):
 
 def all_authors():
     return session.query(Author).all()
-
-
-
 
 def all_books():
     return session.query(Book).all()
@@ -54,8 +50,21 @@ def get_book_ratings(title):
 
 ### DELETION
 
-def delete_rating():
-    pass
+def delete_rating(rating_id):
+    rating = session.query(Rating).filter(Rating.id == rating_id).first()
+    session.delete(rating)
+
+def delete_book(title):
+    book = get_one_book(title=title)
+    for rating in book.ratings:
+        delete_rating(rating_id=rating.id)
+    session.delete(book)
+
+def delete_author(name):
+    author = get_one_author(name=name)
+    for book in author.books:
+        delete_book(title=book.title)
+    session.delete(author)
 
 
 

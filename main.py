@@ -26,11 +26,11 @@ COMMANDS (case insensitive)
 Add Author: 'a'
 Add Book: 'b'
 Add Rating: 'r'
-Find Authors Books: 'f'
-Find Book Ratings: 'f -b'
-
 Remove Author: 'rm -a'
 Remove Book: 'rm -b'
+
+Find Books by Author: 'f'
+Find Ratings by Book: 'f -b'
 
 Cow: 'cow'
 Exit: 'x' 
@@ -67,8 +67,20 @@ Exit: 'x'
             print_b()
             title = input("Book (Full Name): ")
             get_book_ratings(title=title)
+        elif r == "rm -a":
+            author = input("Author: ")
+            delete_author(name=author)
+        elif r =="rm -b":
+            title = input("Title: ")
+            delete_book(title=title)
+        elif r == "rm -r":
+            pass
+
+
         elif r == "cow":
             cowsay.cow("Leave...")
+
+
 
         # divider and condition
         print("---------------------------------------------------------------")
