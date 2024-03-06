@@ -28,10 +28,8 @@ Add Book: 'b'
 Add Rating: 'r'
 Remove Author: 'rm -a'
 Remove Book: 'rm -b'
-
 Find Books by Author: 'f'
 Find Ratings by Book: 'f -b'
-
 Cow: 'cow'
 Exit: 'x' 
 ---------------------------------------------------------------
@@ -62,11 +60,23 @@ Exit: 'x'
         elif r == "f":
             print_a()
             name = input("Name: ")
-            get_author_books(name=name)
+            books = get_author_books(name=name)
+            for b in books:
+                print(b.title)
+
         elif r == "f -b":
             print_b()
             title = input("Book (Full Name): ")
-            get_book_ratings(title=title)
+            ratings = get_book_ratings(title=title)
+            
+            for rate in ratings:
+                print("")
+                print(f"ID: {rate.id}")
+                print(f"Rate: {rate.rating}")
+                print(f"Review: {rate.review}")
+                print("")
+
+
         elif r == "rm -a":
             author = input("Author: ")
             delete_author(name=author)
