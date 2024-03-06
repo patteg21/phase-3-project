@@ -14,6 +14,12 @@ Install libraries and dependencies
 pip install -r requirements.txt
 ```
 
+Run the application
+```commandline
+python main.py
+```
+
+
 The purpose of this project is to showcase how Commandline Interface(CLI) Application can interact with a DB
 Through the CLI you will be able to delete, find, or add items.
 Further commands that are not listed on start are
@@ -24,3 +30,6 @@ ls -b # gets all books
 
 This was done to not crowd the CLI at the start.
 Additionally, to exit the program you can use 'x'
+
+All Models that are used are found in models.py
+For the sake of reusability all the major functions to the DB are found in utils.py
