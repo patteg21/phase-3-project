@@ -20,17 +20,16 @@ class Book(Base):
     id = Column(String, primary_key=True, default=generate_uuid)
     title = Column(String, nullable=False)
     genre = Column(String, nullable=False)
-    rating = Column(Integer, nullable=True, default=5) 
     author_id = Column(String, ForeignKey('authors.id'))
     author = relationship("Author", back_populates="books")
     ratings = relationship("Rating", back_populates="book") 
 
 class Rating(Base):
     __tablename__ = 'ratings'
-    id = Column(Integer, primary_key=True, default=generate_uuid)
-    rating = Column(Integer)
+    id = Column(String, primary_key=True, default=generate_uuid)
+    rating = Column(Integer, nullable=False)
     review = Column(String, nullable=False)
-    book_id = Column(Integer, ForeignKey('books.id'))
+    book_id = Column(String, ForeignKey('books.id'))
     book = relationship("Book", back_populates="ratings") 
 
 

@@ -23,10 +23,11 @@ def add_book(title, genre, author):
     session.add(new_book)
     session.commit()
     
-def add_rating(rating, review, book):
-    book = get_one_book(book)
+def add_rating(rating, review, title):
+    book = get_one_book(title=title)
 
-    session.add(Rating(rating=rating, review=review, book_id=book.id, book=book))
+    new_rating = Rating(rating=int(rating), review=review, book_id=book.id, book=book)
+    session.add(new_rating)
     session.commit()
 
 def all_authors():
